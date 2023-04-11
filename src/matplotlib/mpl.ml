@@ -207,12 +207,13 @@ let fill_between p ?color ?alpha xs ys1 ys2 =
   let args = Array.map [|xs; ys1; ys2|] float_array_to_python in
   ignore (Py.Module.get_function_with_keywords p "fill_between" args keywords)
 
-let hist p ?label ?color ?bins ?orientation ?histtype ?xs ys =
+let hist p ?label ?color ?bins ?weights ?orientation ?histtype ?xs ys =
   let keywords =
     List.filter_opt
       [ Option.map color ~f:(fun color -> "color", Color.to_pyobject color)
       ; Option.map label ~f:(fun l -> "label", Py.String.of_string l)
       ; Option.map bins ~f:(fun b -> "bins", Py.Int.of_int b)
+      ; Option.map weights ~f:(fun w -> "weights", float_array_to_python w)
       ; Option.map orientation ~f:(fun o ->
             let o =
               match o with

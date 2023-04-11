@@ -53,6 +53,7 @@ val hist
   :  ?label:string
   -> ?color:Mpl.Color.t
   -> ?bins:int
+  -> ?weights:float array
   -> ?orientation:[ `horizontal | `vertical ]
   -> ?histtype:[ `bar | `barstacked | `step | `stepfilled ]
   -> ?xs:float array list

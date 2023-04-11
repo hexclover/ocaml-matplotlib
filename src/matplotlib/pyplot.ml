@@ -45,9 +45,9 @@ let fill_between ?color ?alpha xs ys1 ys2 =
   let p = Mpl.pyplot_module () in
   Mpl.fill_between p ?color ?alpha xs ys1 ys2
 
-let hist ?label ?color ?bins ?orientation ?histtype ?xs ys =
+let hist ?label ?color ?bins ?weights ?orientation ?histtype ?xs ys =
   let p = Mpl.pyplot_module () in
-  Mpl.hist p ?label ?color ?bins ?orientation ?histtype ?xs ys
+  Mpl.hist p ?label ?color ?bins ?weights ?orientation ?histtype ?xs ys
 
 let scatter ?s ?c ?marker ?alpha ?linewidths xys =
   let p = Mpl.pyplot_module () in
