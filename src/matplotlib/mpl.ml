@@ -140,6 +140,21 @@ let show () =
   let p = pyplot_module () in
   ignore ((p.&("show")) [||])
 
+let figure p ?num ?figsize ?dpi ?facecolor ?edgecolor ?frameon ?clear () =
+  let p = pyplot_module () in
+  let keywords =
+    List.filter_opt
+      [ Option.map num ~f:(fun num -> "num", Py.Int.of_int num)
+      ; Option.map figsize ~f:(fun (w, h) -> "figsize", Py.Tuple.of_pair (Py.Float.of_float w, Py.Float.of_float h))
+      ; Option.map dpi ~f:(fun dpi -> "dpi", Py.Float.of_float dpi)
+      ; Option.map facecolor ~f:(fun fc -> "facecolor", Color.to_pyobject fc)
+      ; Option.map edgecolor ~f:(fun ec -> "edgecolor", Color.to_pyobject ec)
+      ; Option.map frameon ~f:(fun frameon -> "frameon", Py.Bool.of_bool frameon)
+      ; Option.map clear ~f:(fun clear -> "clear", Py.Bool.of_bool clear)
+      ]
+  in
+  ignore (Py.Module.get_function_with_keywords p "figure" [||] keywords)
+
 let style_available () =
   let p = pyplot_module () in
   (p.@$("style")).@$("available") |> Py.List.to_list_map Py.String.to_string
@@ -156,6 +171,7 @@ module Public = struct
 
   let set_backend = set_backend
   let show = show
+  let figure = figure
   let savefig = savefig
   let plot_data = plot_data
   let style_available = style_available

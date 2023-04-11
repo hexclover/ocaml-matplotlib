@@ -50,6 +50,17 @@ end
 val set_backend : Backend.t -> unit
 val pyplot_module : unit -> Py.Object.t
 val show : unit -> unit
+val figure
+  :  Py.Object.t
+  -> ?num:int
+  -> ?figsize:float * float
+  -> ?dpi:float
+  -> ?facecolor:Color.t
+  -> ?edgecolor:Color.t
+  -> ?frameon:bool
+  -> ?clear:bool
+  -> unit
+  -> unit
 val savefig : string -> unit
 val plot_data : [ `png | `jpg ] -> string
 
@@ -98,6 +109,17 @@ module Public : sig
   (* [set_backend] has to be called before any other operation. *)
   val set_backend : Backend.t -> unit
   val show : unit -> unit
+  val figure
+    :  Py.Object.t
+    -> ?num:int
+    -> ?figsize:float * float
+    -> ?dpi:float
+    -> ?facecolor:Color.t
+    -> ?edgecolor:Color.t
+    -> ?frameon:bool
+    -> ?clear:bool
+    -> unit
+    -> unit
   val savefig : string -> unit
   val plot_data : [ `png | `jpg ] -> string
   val style_available : unit -> string list
