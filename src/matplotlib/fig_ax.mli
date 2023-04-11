@@ -52,6 +52,24 @@ module Ax : sig
     -> (float * float) array
     -> unit
 
+  val bar
+    :  t
+    -> ?width:float
+    -> ?bottom:float
+    -> ?align:[ `center | `edge ]
+    -> float array
+    -> float array
+    -> unit
+
+  val stairs
+    :  t
+    -> ?edges:float array
+    -> ?orientation:[ `horizontal | `vertical ]
+    -> ?baseline:float
+    -> ?fill:bool
+    -> float array
+    -> unit
+
   val imshow : t -> ?cmap:string -> Mpl.Imshow_data.t -> unit
 
   module Expert : sig

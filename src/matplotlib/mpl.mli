@@ -188,6 +188,24 @@ val scatter_3d
   -> (float * float * float) array
   -> unit
 
+val bar
+  :  Py.Object.t
+  -> ?width:float
+  -> ?bottom:float
+  -> ?align:[ `center | `edge ]
+  -> float array
+  -> float array
+  -> unit
+
+val stairs
+  :  Py.Object.t
+  -> ?edges:float array
+  -> ?orientation:[ `horizontal | `vertical ]
+  -> ?baseline:float
+  -> ?fill:bool
+  -> float array
+  -> unit
+
 module Imshow_data : sig
   type t
   type 'a typ_

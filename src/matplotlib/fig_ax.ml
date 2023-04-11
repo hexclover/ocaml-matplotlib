@@ -54,6 +54,8 @@ module Ax = struct
   let plot = Mpl.plot
   let hist = Mpl.hist
   let scatter = Mpl.scatter
+  let bar = Mpl.bar
+  let stairs = Mpl.stairs
   let imshow = Mpl.imshow
   let legend = Mpl.legend
 

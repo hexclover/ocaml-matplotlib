@@ -71,6 +71,22 @@ val scatter
   -> (float * float) array
   -> unit
 
+val bar
+  :  ?width:float
+  -> ?bottom:float
+  -> ?align:[ `center | `edge ]
+  -> float array
+  -> float array
+  -> unit
+
+val stairs
+  :  ?edges:float array
+  -> ?orientation:[ `horizontal | `vertical ]
+  -> ?baseline:float
+  -> ?fill:bool
+  -> float array
+  -> unit
+
 val imshow : ?cmap:string -> Mpl.Imshow_data.t -> unit
 
 val legend : ?labels:(string array) -> ?loc:Mpl.Loc.t -> unit -> unit

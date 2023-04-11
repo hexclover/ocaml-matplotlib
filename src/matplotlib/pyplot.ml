@@ -53,6 +53,14 @@ let scatter ?s ?c ?marker ?alpha ?linewidths xys =
   let p = Mpl.pyplot_module () in
   Mpl.scatter p ?s ?c ?marker ?alpha ?linewidths xys
 
+let bar ?width ?bottom ?align xs heights =
+  let p = Mpl.pyplot_module () in
+  Mpl.bar p ?width ?bottom ?align xs heights
+
+let stairs ?edges ?orientation ?baseline ?fill values =
+  let p = Mpl.pyplot_module () in
+  Mpl.stairs p ?edges ?orientation ?baseline ?fill values
+
 let imshow ?cmap xys =
   let p = Mpl.pyplot_module () in
   Mpl.imshow p ?cmap xys

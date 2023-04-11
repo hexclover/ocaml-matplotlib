@@ -267,6 +267,40 @@ let scatter_3d p ?s ?c ?marker ?alpha ?linewidths xyzs =
   let zs = Py.List.of_array_map (fun (_, _, z) -> Py.Float.of_float z) xyzs in
   ignore (Py.Module.get_function_with_keywords p "scatter" [| xs; ys; zs |] keywords)
 
+let bar p ?width ?bottom ?align xs heights =
+  let keywords = List.filter_opt
+      [ Option.map width ~f:(fun width -> "width", Py.Float.of_float width)
+      ; Option.map bottom ~f:(fun bottom -> "bottom", Py.Float.of_float bottom)
+      ; Option.map align ~f:(fun align ->
+            let align =
+              match align with
+              | `center -> "center"
+              | `edge -> "edge"
+            in
+            "align", Py.String.of_string align)
+      ]
+  in
+  let xs = Py.List.of_array_map Py.Float.of_float xs in
+  let heights = Py.List.of_array_map Py.Float.of_float heights in
+  ignore (Py.Module.get_function_with_keywords p "bar" [| xs; heights |] keywords)
+
+let stairs p ?edges ?orientation ?baseline ?fill values =
+  let keywords = List.filter_opt
+      [ Option.map edges ~f:(fun edges -> "edges", Py.List.of_array_map Py.Float.of_float edges)
+      ; Option.map orientation ~f:(fun o ->
+            let o =
+              match o with
+              | `horizontal -> "horizontal"
+              | `vertical -> "vertical"
+            in
+            "orientation", Py.String.of_string o)
+      ; Option.map baseline ~f:(fun baseline -> "baseline", Py.Float.of_float baseline)
+      ; Option.map fill ~f:(fun fill -> "fill", Py.Bool.of_bool fill)
+      ]
+  in
+  let values = Py.List.of_array_map Py.Float.of_float values in
+  ignore (Py.Module.get_function_with_keywords p "staris" [| values |] keywords)
+
 module Imshow_data = struct
   type 'a data =
     | Scalar of 'a array array
